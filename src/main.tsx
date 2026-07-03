@@ -3,9 +3,6 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-document.body.classList.add("js-loaded");
-document.getElementById("static-seo-content")?.remove();
-
 if (import.meta.env.PROD) {
   const hook = (window as { __REACT_DEVTOOLS_GLOBAL_HOOK__?: Record<string, unknown> })
     .__REACT_DEVTOOLS_GLOBAL_HOOK__;

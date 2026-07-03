@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import RedOverlayUnicornStudioBackground from "./components/RedOverlayUnicornStudioBackground";
 import Preloader from "./components/Preloader";
 import Nav from "./components/Nav";
@@ -17,7 +17,6 @@ import Footer from "./components/Footer";
 import { useCoarsePointer, usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
 
 export default function App() {
-  const [ready, setReady] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
   const coarsePointer = useCoarsePointer();
 
@@ -52,18 +51,13 @@ export default function App() {
 
   return (
     <>
-      <Preloader onComplete={() => setReady(true)} reducedMotion={reducedMotion} />
+      <Preloader reducedMotion={reducedMotion} />
       <RedOverlayUnicornStudioBackground
         reducedMotion={reducedMotion}
         coarsePointer={coarsePointer}
       />
 
-      <div
-        className={`relative z-20 font-sans antialiased min-h-screen ${
-          ready ? "opacity-100" : "opacity-0"
-        }`}
-        style={{ transitionDuration: "var(--duration-slow)" }}
-      >
+      <div className="relative z-20 min-h-screen font-sans antialiased">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[120] focus:rounded-md focus:bg-snow focus:px-4 focus:py-2 focus:text-obsidian focus:outline-none"

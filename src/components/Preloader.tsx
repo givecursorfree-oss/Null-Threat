@@ -1,10 +1,16 @@
-import { useEffect } from "react";
 import { Logo } from "./Logo";
 
 const PRELOADER_KEY = "null-threat-preloader-seen";
 
+function isLikelyCrawler() {
+  if (typeof navigator === "undefined") return true;
+  return /bot|crawl|spider|slurp|mediapartners|facebookexternalhit|whatsapp|preview|lighthouse|headless/i.test(
+    navigator.userAgent
+  );
+}
+
 function shouldSkipPreloader(reducedMotion: boolean) {
-  if (reducedMotion) return true;
+  if (reducedMotion || isLikelyCrawler()) return true;
   try {
     return sessionStorage.getItem(PRELOADER_KEY) === "1";
   } catch {
@@ -12,18 +18,8 @@ function shouldSkipPreloader(reducedMotion: boolean) {
   }
 }
 
-export default function Preloader({
-  onComplete,
-  reducedMotion = false,
-}: {
-  onComplete: () => void;
-  reducedMotion?: boolean;
-}) {
+export default function Preloader({ reducedMotion = false }: { reducedMotion?: boolean }) {
   const skip = shouldSkipPreloader(reducedMotion);
-
-  useEffect(() => {
-    if (skip) onComplete();
-  }, [skip, onComplete]);
 
   const handleComplete = () => {
     try {
@@ -31,7 +27,6 @@ export default function Preloader({
     } catch {
       // ignore storage errors
     }
-    onComplete();
   };
 
   if (skip) return null;
