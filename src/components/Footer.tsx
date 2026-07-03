@@ -1,3 +1,4 @@
+import { GITHUB_ISSUES, GITHUB_README, GITHUB_REPO, GPL_LICENSE_URL } from "@/seo/config";
 import { Logo } from "./Logo";
 
 const groups = {
@@ -5,20 +6,21 @@ const groups = {
     { label: "Features", href: "#features" },
     { label: "Engines", href: "#engines" },
     { label: "Download", href: "#download" },
+    { label: "FAQ", href: "#faq" },
   ],
   Security: [
     { label: "Quarantine", href: "#platform" },
-    { label: "Risk scores", href: "#engines" },
+    { label: "Risk scores", href: "#risk" },
     { label: "YARA rules", href: "#engines" },
   ],
   Resources: [
     { label: "Open source", href: "#opensource" },
-    { label: "Build guide", href: "https://github.com", external: true },
-    { label: "License", href: "https://www.gnu.org/licenses/gpl-3.0.en.html", external: true },
+    { label: "Build guide", href: GITHUB_README, external: true },
+    { label: "License", href: GPL_LICENSE_URL, external: true },
   ],
   Community: [
-    { label: "GitHub", href: "https://github.com", external: true },
-    { label: "Issues", href: "https://github.com/issues", external: true },
+    { label: "GitHub", href: GITHUB_REPO, external: true },
+    { label: "Issues", href: GITHUB_ISSUES, external: true },
   ],
 };
 

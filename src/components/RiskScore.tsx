@@ -15,11 +15,14 @@ const tiers = [
 
 export default function RiskScore() {
   return (
-    <section className="section-gap bg-obsidian">
+    <section id="risk" className="section-gap bg-obsidian" aria-labelledby="risk-heading">
       <div className="container-page max-w-4xl">
         <SectionReveal>
           <div className="mb-10 text-center">
-            <h2 className="mb-3 text-heading font-semibold tracking-tight text-snow">
+            <h2
+              id="risk-heading"
+              className="mb-3 text-heading font-semibold tracking-tight text-snow"
+            >
               Understand every score
             </h2>
             <p className="text-body-lg text-ash">

@@ -3,6 +3,7 @@ import {
   CheckIcon,
   CodeBracketSquareIcon,
 } from "@heroicons/react/24/outline";
+import { GITHUB_REPO, GPL_LICENSE_URL } from "@/seo/config";
 import { GitHubIcon } from "./icons/GitHubIcon";
 import { SectionReveal } from "./SectionReveal";
 
@@ -52,7 +53,7 @@ export default function OpenSource() {
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
             <a
-              href="https://github.com"
+              href={GITHUB_REPO}
               className="btn-pill-primary inline-flex min-h-[44px] gap-2"
               target="_blank"
               rel="noreferrer"
@@ -63,7 +64,7 @@ export default function OpenSource() {
               <ArrowTopRightOnSquareIcon className="h-4 w-4 shrink-0 opacity-80" aria-hidden />
             </a>
             <a
-              href="https://www.gnu.org/licenses/gpl-3.0.en.html"
+              href={GPL_LICENSE_URL}
               className="btn-pill-ghost inline-flex min-h-[44px] gap-2"
               target="_blank"
               rel="noreferrer"

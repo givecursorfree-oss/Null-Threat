@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://null-threat.vercel.app/sitemap.xml

@@ -83,13 +83,6 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <a
-            href="#opensource"
-            className="text-body font-medium text-ash hover:text-snow hidden sm:inline-flex sm:items-center sm:gap-1.5 transition-colors duration-fast focus:outline-none focus-visible:ring-2 focus-visible:ring-snow/70 focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian rounded-sm"
-            aria-label="View source code"
-          >
-            Source
-          </a>
           <a href="#download" className="btn-pill-primary !py-2.5 !px-5 !text-body hidden sm:inline-flex">
             Download
           </a>
@@ -130,15 +123,6 @@ export default function Nav() {
                   </a>
                 </li>
               ))}
-              <li className="pt-1 border-t border-white/10 mt-1">
-                <a
-                  href="#opensource"
-                  className="flex min-h-[44px] items-center gap-2 rounded-md px-3 text-body text-ash hover:bg-white/5 hover:text-snow transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-snow/70"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Source
-                </a>
-              </li>
               <li className="pt-1">
                 <a
                   href="#download"

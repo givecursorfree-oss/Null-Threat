@@ -1,0 +1,25 @@
+{
+  "name": "Null Threat — Local Desktop Security Scanner",
+  "short_name": "Null Threat",
+  "description": "Free local malware scanner with four offline engines. No cloud uploads, no telemetry.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#ef4444",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "/images/logo-mark.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo-mark.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

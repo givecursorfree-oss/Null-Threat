@@ -2,22 +2,169 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/images/logo-mark.png" />
-    <link rel="apple-touch-icon" href="/images/logo-mark.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Null Threat | Free Local Desktop Security Scanner (Offline, Open Source)</title>
     <meta
       name="description"
-      content="Null Threat: four local detection engines, zero cloud uploads. Free and open source under GPL v3."
+      content="Null Threat scans every file on your machine with four local engines. No cloud uploads, no subscription, no telemetry. Free and open source under GPL v3 for Windows, macOS, and Linux."
     />
-    <title>Null Threat | Local Desktop Security Scanner</title>
+    <meta
+      name="keywords"
+      content="local antivirus, offline malware scanner, open source security scanner, YARA scanner, ClamAV alternative, desktop security, file scanner, GPL v3 antivirus, privacy-first malware detection"
+    />
+    <meta name="author" content="Null Threat" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <link rel="canonical" href="https://null-threat.vercel.app/" />
+
+    <!-- Paste the verification meta tag from Google Search Console here when ready -->
+    <!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" /> -->
+
+    <meta name="theme-color" content="#ef4444" />
+    <meta name="application-name" content="Null Threat" />
+    <meta name="color-scheme" content="dark" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Null Threat" />
+    <meta property="og:url" content="https://null-threat.vercel.app/" />
+    <meta property="og:title" content="Null Threat | Free Local Desktop Security Scanner" />
+    <meta
+      property="og:description"
+      content="Scan every file locally with four engines. No cloud uploads, no subscription, no telemetry. Free and open source under GPL v3."
+    />
+    <meta property="og:image" content="https://null-threat.vercel.app/images/logobg.png" />
+    <meta property="og:image:alt" content="Null Threat logo on dark background" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Null Threat | Free Local Desktop Security Scanner" />
+    <meta
+      name="twitter:description"
+      content="Four local detection engines. Zero cloud uploads. Free forever under GPL v3."
+    />
+    <meta name="twitter:image" content="https://null-threat.vercel.app/images/logobg.png" />
+    <meta name="twitter:image:alt" content="Null Threat logo" />
+
+    <link rel="icon" type="image/png" href="/images/logo-mark.png" />
+    <link rel="apple-touch-icon" href="/images/logo-mark.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap"
       rel="stylesheet"
     />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://null-threat.vercel.app/#website",
+            "url": "https://null-threat.vercel.app/",
+            "name": "Null Threat",
+            "description": "Free local desktop security scanner with four offline detection engines.",
+            "inLanguage": "en-US",
+            "publisher": { "@id": "https://null-threat.vercel.app/#organization" }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://null-threat.vercel.app/#software",
+            "name": "Null Threat",
+            "url": "https://null-threat.vercel.app/",
+            "applicationCategory": "SecurityApplication",
+            "operatingSystem": "Windows, macOS, Linux",
+            "description": "Null Threat scans files locally using hash lookup, signature scanning, YARA rules, and deep analysis. No cloud uploads and no telemetry.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "license": "https://www.gnu.org/licenses/gpl-3.0.en.html",
+            "isAccessibleForFree": true,
+            "downloadUrl": "https://null-threat.vercel.app/#download"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://null-threat.vercel.app/#organization",
+            "name": "Null Threat",
+            "url": "https://null-threat.vercel.app/",
+            "logo": "https://null-threat.vercel.app/images/logo-mark.png",
+            "sameAs": ["https://github.com/givecursorfree-oss/Null-Threat"]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://null-threat.vercel.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is Null Threat?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Null Threat is a free, open-source desktop security scanner that checks files on your machine using four local detection engines. It runs entirely on your device with no cloud uploads and no telemetry."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Null Threat upload my files to the cloud?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Every scan runs locally on your computer. Files are never sent to external servers, and Null Threat does not collect usage telemetry."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What detection engines does Null Threat use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Null Threat combines hash lookup, signature scanning, YARA rule matching, and deep analysis. All engines run offline after initial rule updates."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is Null Threat really free?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Null Threat is free forever under GPL v3. There is no subscription, no account requirement, and no paid tier."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which operating systems are supported?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Null Threat supports Windows, macOS, and Linux. Download builds or compile from source on the GitHub repository."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
+    <noscript>
+      <h1>Null Threat: Local Desktop Security Scanner</h1>
+      <p>
+        Scan every file on your machine with four local engines. No cloud uploads, no subscription,
+        no telemetry. Free and open source under GPL v3 for Windows, macOS, and Linux.
+      </p>
+      <p><a href="https://github.com/givecursorfree-oss/Null-Threat/releases">Download Null Threat</a></p>
+      <h2>Frequently asked questions</h2>
+      <h3>What is Null Threat?</h3>
+      <p>
+        A free, open-source desktop security scanner with four local detection engines and no cloud
+        uploads.
+      </p>
+      <h3>Does Null Threat upload my files to the cloud?</h3>
+      <p>No. Every scan runs locally on your computer.</p>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

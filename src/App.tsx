@@ -11,6 +11,7 @@ import FeaturesGrid from "./components/FeaturesGrid";
 import RiskScore from "./components/RiskScore";
 import OpenSource from "./components/OpenSource";
 import DownloadCTA from "./components/DownloadCTA";
+import SeoFaq from "./components/SeoFaq";
 import Footer from "./components/Footer";
 import { useCoarsePointer, usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
 
@@ -70,7 +71,7 @@ export default function App() {
         </a>
         <Nav />
         <main id="main-content" className="overflow-x-hidden w-full max-w-full">
-          <Hero ready={ready} reducedMotion={reducedMotion} />
+          <Hero reducedMotion={reducedMotion} />
           <TrustBar />
           <Animated3ColumnValueProposition />
           <ProblemSolution />
@@ -79,6 +80,7 @@ export default function App() {
           <RiskScore />
           <OpenSource />
           <DownloadCTA />
+          <SeoFaq />
           <Footer />
         </main>
       </div>

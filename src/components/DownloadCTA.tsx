@@ -1,13 +1,14 @@
 import { ArrowRightIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { GITHUB_RELEASES } from "@/seo/config";
 import { platformIcons, type PlatformId } from "./icons/PlatformIcons";
 import { SectionReveal } from "./SectionReveal";
 
 const CTA_BACKGROUND_IMAGE = "/images/cta-download-bg.jpg";
 
 const platforms: { id: PlatformId; label: string; href: string }[] = [
-  { id: "windows", label: "Windows", href: "https://github.com" },
-  { id: "macos", label: "macOS", href: "https://github.com" },
-  { id: "linux", label: "Linux", href: "https://github.com" },
+  { id: "windows", label: "Windows", href: GITHUB_RELEASES },
+  { id: "macos", label: "macOS", href: GITHUB_RELEASES },
+  { id: "linux", label: "Linux", href: GITHUB_RELEASES },
 ];
 
 export default function DownloadCTA() {

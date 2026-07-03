@@ -48,6 +48,10 @@ vi.mock("@/components/DownloadCTA", () => ({
   default: () => <section id="download">Download</section>,
 }));
 
+vi.mock("@/components/SeoFaq", () => ({
+  default: () => <section id="faq">FAQ</section>,
+}));
+
 vi.mock("@/components/Footer", () => ({
   default: () => <footer>Footer</footer>,
 }));

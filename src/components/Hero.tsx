@@ -1,15 +1,7 @@
 import { BrandLockup } from "./BrandLockup";
 import ThreatMap from "./ThreatMap";
 
-export default function Hero({
-  ready = true,
-  reducedMotion = false,
-}: {
-  ready?: boolean;
-  reducedMotion?: boolean;
-}) {
-  if (!ready) return null;
-
+export default function Hero({ reducedMotion = false }: { reducedMotion?: boolean }) {
   return (
     <section
       id="hero"
