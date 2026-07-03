@@ -15,7 +15,11 @@ function siteNav(): string {
   <a href="${SITE_URL}/download">Download</a> |
   <a href="${SITE_URL}/compare">Compare</a> |
   <a href="${SITE_URL}/faq">FAQ</a> |
-  <a href="${SITE_URL}/docs">Docs</a>
+  <a href="${SITE_URL}/docs">Docs</a> |
+  <a href="#engines">Engines</a> |
+  <a href="#compare">Compare section</a> |
+  <a href="#download">Download section</a> |
+  <a href="#faq">FAQ section</a>
 </nav>`;
 }
 

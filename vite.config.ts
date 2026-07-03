@@ -13,9 +13,10 @@ function seoStaticPlugin(): Plugin {
   return {
     name: "seo-static",
     transformIndexHtml(html) {
+      const staticHtml = buildHomepageStaticHtml();
       return html
         .replace("%STRUCTURED_DATA_JSON%", buildStructuredDataJson())
-        .replace("%STATIC_SEO_HTML%", buildHomepageStaticHtml());
+        .replaceAll("%STATIC_SEO_HTML%", staticHtml);
     },
     closeBundle() {
       const distDir = path.resolve(process.cwd(), "dist");
@@ -31,6 +32,19 @@ function seoStaticPlugin(): Plugin {
       }
 
       fs.writeFileSync(path.join(distDir, "sitemap.xml"), buildSitemapXml(), "utf8");
+
+      const indexPath = path.join(distDir, "index.html");
+      const built = fs.readFileSync(indexPath, "utf8");
+      if (built.includes("%STATIC_SEO_HTML%") || built.includes("%STRUCTURED_DATA_JSON%")) {
+        throw new Error("SEO build failed: unreplaced placeholders in dist/index.html");
+      }
+      const h2Count = (built.match(/<h2[\s>]/g) ?? []).length;
+      if (h2Count < 8) {
+        throw new Error(`SEO build failed: expected at least 8 <h2> tags, found ${h2Count}`);
+      }
+      if (!built.includes('id="root"') || !built.includes("SEO-CONTENT-START")) {
+        throw new Error("SEO build failed: root static content markers missing");
+      }
     },
   };
 }

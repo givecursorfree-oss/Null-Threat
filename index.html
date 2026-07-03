@@ -55,42 +55,19 @@
       rel="stylesheet"
     />
 
-    <style>
-      /* Crawler-first HTML: visible until React hydrates #root */
-      #static-seo-content {
-        max-width: 48rem;
-        margin: 0 auto;
-        padding: 1.25rem 1.25rem 3rem;
-        color: #e4e4e7;
-        background: #0a0a0a;
-        font-family: "Segoe UI", system-ui, sans-serif;
-        line-height: 1.65;
-      }
-      #static-seo-content a {
-        color: #fca5a5;
-      }
-      #static-seo-content h1,
-      #static-seo-content h2,
-      #static-seo-content h3 {
-        color: #fafafa;
-        line-height: 1.25;
-      }
-      #static-seo-content nav {
-        margin-bottom: 1.5rem;
-        font-size: 0.95rem;
-      }
-      #root:not(:empty) + #static-seo-content {
-        display: none;
-      }
-    </style>
-
     <script type="application/ld+json">
 %STRUCTURED_DATA_JSON%
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <!-- SEO-CONTENT-START: server-built HTML inside #root for non-JS crawlers -->
+    <div id="root">
 %STATIC_SEO_HTML%
+    </div>
+    <noscript>
+%STATIC_SEO_HTML%
+    </noscript>
+    <!-- SEO-CONTENT-END -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
