@@ -17,11 +17,11 @@ const good = [
 
 export default function ProblemSolution() {
   return (
-    <section className="section-gap bg-ink">
+    <section id="compare" className="section-gap bg-ink" aria-labelledby="compare-heading">
       <div className="container-page mb-10 max-w-2xl">
         <SectionReveal>
-          <h2 className="text-heading font-semibold tracking-tight text-snow">
-            Why verify everything locally?
+          <h2 id="compare-heading" className="text-heading font-semibold tracking-tight text-snow">
+            Local antivirus vs cloud antivirus
           </h2>
           <p className="mt-3 text-body-lg text-ash">
             Cloud scanners ask you to trust them. Null Threat asks you to trust the evidence on your

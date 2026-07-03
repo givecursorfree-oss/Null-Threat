@@ -4,6 +4,7 @@ import { Logo } from "./Logo";
 const groups = {
   Product: [
     { label: "Features", href: "#features" },
+    { label: "Compare", href: "#compare" },
     { label: "Engines", href: "#engines" },
     { label: "Download", href: "#download" },
     { label: "FAQ", href: "#faq" },

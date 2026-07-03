@@ -1,6 +1,9 @@
 # Null Threat — Marketing Landing Page
 
-React + Vite landing page for **Null Threat**, built with SENTRY-layout fidelity and Null Threat brand identity.
+**Live site:** [https://null-threat.vercel.app/](https://null-threat.vercel.app/)  
+**Repository:** [github.com/givecursorfree-oss/Null-Threat](https://github.com/givecursorfree-oss/Null-Threat)
+
+React + Vite landing page for **Null Threat** — a free, open-source offline malware scanner for Windows, macOS, and Linux.
 
 ## Stack
 

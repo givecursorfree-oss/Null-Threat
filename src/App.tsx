@@ -11,6 +11,7 @@ import FeaturesGrid from "./components/FeaturesGrid";
 import RiskScore from "./components/RiskScore";
 import OpenSource from "./components/OpenSource";
 import DownloadCTA from "./components/DownloadCTA";
+import SeoGuideSection from "./components/SeoGuideSection";
 import SeoFaq from "./components/SeoFaq";
 import Footer from "./components/Footer";
 import { useCoarsePointer, usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
@@ -80,6 +81,7 @@ export default function App() {
           <RiskScore />
           <OpenSource />
           <DownloadCTA />
+          <SeoGuideSection />
           <SeoFaq />
           <Footer />
         </main>

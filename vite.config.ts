@@ -1,6 +1,16 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import { fileURLToPath, URL } from "node:url";
+import { buildStructuredDataJson } from "./src/seo/structured-data";
+
+function injectStructuredData(): Plugin {
+  return {
+    name: "inject-structured-data",
+    transformIndexHtml(html) {
+      return html.replace("%STRUCTURED_DATA_JSON%", buildStructuredDataJson());
+    },
+  };
+}
 
 const csp = [
   "default-src 'self'",
@@ -30,7 +40,7 @@ const securityHeaders: Record<string, string> = {
 };
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), injectStructuredData()],
   build: {
     sourcemap: false,
     minify: "terser",

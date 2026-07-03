@@ -15,15 +15,15 @@ export default function Hero({ reducedMotion = false }: { reducedMotion?: boolea
             </div>
 
             <h1 className="max-w-xl text-display font-semibold tracking-tight text-snow">
-              <span className="block">Scan every file on your machine.</span>
+              <span className="block">Free offline malware scanner</span>
               <span className="mt-1 block font-light text-ash">
-                Trust nothing until it&apos;s verified.
+                for your entire machine.
               </span>
             </h1>
 
             <p className="mt-5 max-w-md text-body-lg leading-relaxed text-ash">
-              Null Threat runs four local engines on your device. No cloud uploads, no subscription,
-              no telemetry.
+              Null Threat runs four local detection engines on your device—hash lookup, signatures,
+              YARA rules, and deep analysis. No cloud uploads, no subscription, no telemetry.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
