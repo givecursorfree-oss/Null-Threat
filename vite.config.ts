@@ -1,13 +1,36 @@
+import fs from "node:fs";
+import path from "node:path";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import { fileURLToPath, URL } from "node:url";
-import { buildStructuredDataJson } from "./src/seo/structured-data";
+import { buildSitemapXml } from "./src/seo/sitemap";
+import { buildSubpageDocument } from "./src/seo/page-template";
+import { buildHomepageStaticHtml } from "./src/seo/static-html";
+import { buildStructuredDataJson, buildSubpageStructuredDataJson } from "./src/seo/structured-data";
+import { subpages } from "./src/seo/subpages";
 
-function injectStructuredData(): Plugin {
+function seoStaticPlugin(): Plugin {
   return {
-    name: "inject-structured-data",
+    name: "seo-static",
     transformIndexHtml(html) {
-      return html.replace("%STRUCTURED_DATA_JSON%", buildStructuredDataJson());
+      return html
+        .replace("%STRUCTURED_DATA_JSON%", buildStructuredDataJson())
+        .replace("%STATIC_SEO_HTML%", buildHomepageStaticHtml());
+    },
+    closeBundle() {
+      const distDir = path.resolve(process.cwd(), "dist");
+
+      for (const page of subpages) {
+        const pageDir = path.join(distDir, page.slug);
+        fs.mkdirSync(pageDir, { recursive: true });
+        fs.writeFileSync(
+          path.join(pageDir, "index.html"),
+          buildSubpageDocument(page, buildSubpageStructuredDataJson(page.slug)),
+          "utf8"
+        );
+      }
+
+      fs.writeFileSync(path.join(distDir, "sitemap.xml"), buildSitemapXml(), "utf8");
     },
   };
 }
@@ -40,7 +63,7 @@ const securityHeaders: Record<string, string> = {
 };
 
 export default defineConfig({
-  plugins: [react(), injectStructuredData()],
+  plugins: [react(), seoStaticPlugin()],
   build: {
     sourcemap: false,
     minify: "terser",

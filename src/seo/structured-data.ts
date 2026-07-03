@@ -24,7 +24,7 @@ export function buildStructuredDataGraph() {
         url: SITE_URL,
         name: "Null Threat | Free Offline Malware Scanner",
         description:
-          "Download a free, open-source local antivirus alternative. Four offline engines, zero cloud uploads, GPL v3.",
+          "Free offline malware scanner for Windows, macOS and Linux. Four local engines, no cloud uploads.",
         isPartOf: { "@id": `${SITE_URL}/#website` },
         about: { "@id": `${SITE_URL}/#software` },
         primaryImageOfPage: {
@@ -57,7 +57,7 @@ export function buildStructuredDataGraph() {
         },
         license: GPL_LICENSE_URL,
         isAccessibleForFree: true,
-        downloadUrl: `${SITE_URL}/#download`,
+        downloadUrl: `${SITE_URL}/download`,
         screenshot: OG_IMAGE_URL,
       },
       {
@@ -78,8 +78,8 @@ export function buildStructuredDataGraph() {
           {
             "@type": "HowToStep",
             name: "Download Null Threat",
-            text: "Get the Windows, macOS, or Linux build from the download section or GitHub releases.",
-            url: `${SITE_URL}/#download`,
+            text: "Get the Windows, macOS, or Linux build from the download page or GitHub releases.",
+            url: `${SITE_URL}/download`,
           },
           {
             "@type": "HowToStep",
@@ -90,7 +90,7 @@ export function buildStructuredDataGraph() {
             "@type": "HowToStep",
             name: "Review engine results",
             text: "Null Threat runs hash lookup, signature scanning, YARA matching, and deep analysis locally.",
-            url: `${SITE_URL}/#engines`,
+            url: `${SITE_URL}/docs`,
           },
           {
             "@type": "HowToStep",
@@ -118,4 +118,48 @@ export function buildStructuredDataGraph() {
 
 export function buildStructuredDataJson(): string {
   return JSON.stringify(buildStructuredDataGraph(), null, 2);
+}
+
+export function buildFaqPageStructuredDataJson(): string {
+  return JSON.stringify(
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    },
+    null,
+    2
+  );
+}
+
+export function buildDownloadPageStructuredDataJson(): string {
+  return JSON.stringify(
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: SITE_NAME,
+      url: `${SITE_URL}/download`,
+      applicationCategory: "SecurityApplication",
+      operatingSystem: "Windows, macOS, Linux",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      isAccessibleForFree: true,
+      downloadUrl: `${SITE_URL}/download`,
+      license: GPL_LICENSE_URL,
+    },
+    null,
+    2
+  );
+}
+
+export function buildSubpageStructuredDataJson(slug: string): string | undefined {
+  if (slug === "faq") return buildFaqPageStructuredDataJson();
+  if (slug === "download") return buildDownloadPageStructuredDataJson();
+  return undefined;
 }

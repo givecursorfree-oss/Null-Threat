@@ -4,10 +4,10 @@ import { Logo } from "./Logo";
 const groups = {
   Product: [
     { label: "Features", href: "#features" },
-    { label: "Compare", href: "#compare" },
+    { label: "Compare", href: "/compare" },
     { label: "Engines", href: "#engines" },
-    { label: "Download", href: "#download" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Download", href: "/download" },
+    { label: "FAQ", href: "/faq" },
   ],
   Security: [
     { label: "Quarantine", href: "#platform" },
@@ -15,6 +15,7 @@ const groups = {
     { label: "YARA rules", href: "#engines" },
   ],
   Resources: [
+    { label: "Documentation", href: "/docs" },
     { label: "Open source", href: "#opensource" },
     { label: "Build guide", href: GITHUB_README, external: true },
     { label: "License", href: GPL_LICENSE_URL, external: true },
