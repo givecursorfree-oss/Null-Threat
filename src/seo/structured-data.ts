@@ -13,6 +13,7 @@ export function buildStructuredDataGraph() {
         "@id": `${SITE_URL}/#website`,
         url: SITE_URL,
         name: SITE_NAME,
+        alternateName: ["Null Threat", "null threat"],
         description:
           "Free offline malware scanner with four local detection engines for Windows, macOS, and Linux.",
         inLanguage: "en-US",
@@ -64,6 +65,7 @@ export function buildStructuredDataGraph() {
         "@type": "Organization",
         "@id": `${SITE_URL}/#organization`,
         name: SITE_NAME,
+        alternateName: ["Null Threat", "null threat"],
         url: SITE_URL,
         logo: LOGO_URL,
         sameAs: [GITHUB_REPO],

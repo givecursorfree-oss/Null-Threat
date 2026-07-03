@@ -1,0 +1,23 @@
+# SourceForge listing — copy/paste
+
+**Project name:** Null Threat
+
+**Homepage:** https://null-threat.vercel.app/
+
+**Download:** https://github.com/givecursorfree-oss/Null-Threat/releases
+
+**Source code:** https://github.com/givecursorfree-oss/Null-Threat
+
+**Short summary:**
+Free offline malware scanner with four local engines. No cloud uploads. GPL v3.
+
+**Description:**
+Null Threat is an open-source desktop scanner for Windows, macOS, and Linux. It combines hash lookup, signature scanning, YARA rules, and deep analysis — all running locally on your machine. Folder watch, quarantine, risk scoring, and exportable reports included.
+
+**Categories:** Security, Antivirus, Privacy
+
+**License:** GNU GPL v3
+
+**Topics:** malware-scanner, yara, offline-security
+
+**Screenshots:** Add 3–5 from the live site or app UI before publishing.

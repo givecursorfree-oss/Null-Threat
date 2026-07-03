@@ -7,6 +7,8 @@ const groups = {
     { label: "Compare", href: "/compare" },
     { label: "Engines", href: "#engines" },
     { label: "Download", href: "/download" },
+    { label: "Null Threat vs ClamAV", href: "/blog/null-threat-vs-clamav" },
+    { label: "About Null Threat", href: "/about" },
     { label: "FAQ", href: "/faq" },
   ],
   Security: [

@@ -1,20 +1,29 @@
-import { useEffect } from "react";
-import RedOverlayUnicornStudioBackground from "./components/RedOverlayUnicornStudioBackground";
+import { lazy, Suspense, useEffect, type ReactNode } from "react";
 import Preloader from "./components/Preloader";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import TrustBar from "./components/TrustBar";
-import Animated3ColumnValueProposition from "./components/Animated3ColumnValueProposition";
 import ProblemSolution from "./components/ProblemSolution";
 import EngineStepper from "./components/EngineStepper";
-import FeaturesGrid from "./components/FeaturesGrid";
-import RiskScore from "./components/RiskScore";
 import OpenSource from "./components/OpenSource";
 import DownloadCTA from "./components/DownloadCTA";
 import SeoGuideSection from "./components/SeoGuideSection";
 import SeoFaq from "./components/SeoFaq";
 import Footer from "./components/Footer";
 import { useCoarsePointer, usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
+
+const RedOverlayUnicornStudioBackground = lazy(
+  () => import("./components/RedOverlayUnicornStudioBackground")
+);
+const Animated3ColumnValueProposition = lazy(
+  () => import("./components/Animated3ColumnValueProposition")
+);
+const FeaturesGrid = lazy(() => import("./components/FeaturesGrid"));
+const RiskScore = lazy(() => import("./components/RiskScore"));
+
+function LazySection({ children }: { children: ReactNode }) {
+  return <Suspense fallback={null}>{children}</Suspense>;
+}
 
 export default function App() {
   const reducedMotion = usePrefersReducedMotion();
@@ -52,10 +61,12 @@ export default function App() {
   return (
     <>
       <Preloader reducedMotion={reducedMotion} />
-      <RedOverlayUnicornStudioBackground
-        reducedMotion={reducedMotion}
-        coarsePointer={coarsePointer}
-      />
+      <LazySection>
+        <RedOverlayUnicornStudioBackground
+          reducedMotion={reducedMotion}
+          coarsePointer={coarsePointer}
+        />
+      </LazySection>
 
       <div className="relative z-20 min-h-screen font-sans antialiased">
         <a
@@ -68,11 +79,17 @@ export default function App() {
         <main id="main-content" className="overflow-x-hidden w-full max-w-full">
           <Hero reducedMotion={reducedMotion} />
           <TrustBar />
-          <Animated3ColumnValueProposition />
+          <LazySection>
+            <Animated3ColumnValueProposition />
+          </LazySection>
           <ProblemSolution />
           <EngineStepper />
-          <FeaturesGrid />
-          <RiskScore />
+          <LazySection>
+            <FeaturesGrid />
+          </LazySection>
+          <LazySection>
+            <RiskScore />
+          </LazySection>
           <OpenSource />
           <DownloadCTA />
           <SeoGuideSection />

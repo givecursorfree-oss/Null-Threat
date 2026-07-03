@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && node scripts/verify-seo-build.mjs",
+    "seo:ping": "node scripts/ping-sitemap.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",

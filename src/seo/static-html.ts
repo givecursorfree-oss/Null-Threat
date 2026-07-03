@@ -64,7 +64,7 @@ export function buildHomepageStaticHtml(): string {
       <ul>${cloudList}</ul>
       <h3>Null Threat</h3>
       <ul>${localList}</ul>
-      <p><a href="${SITE_URL}/compare">Read the full comparison</a></p>
+      <p><a href="${SITE_URL}/compare">Read the full comparison</a> · <a href="${SITE_URL}/blog/null-threat-vs-clamav">Null Threat vs ClamAV</a></p>
     </section>
 
     <section id="engines">

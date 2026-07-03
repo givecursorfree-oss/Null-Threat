@@ -105,3 +105,54 @@ Tokens are sourced from the Cyber HERO design files:
 - App source: `../CyberSecur Opensource/shieldscan/`
 - Brand docs: `../CyberSecur Opensource/shieldscan/docs/brand/`
 - Static HTML version: `../CyberSecur Opensource/shieldscan/website/index.html`
+
+## SEO & launch checklist
+
+**Live site:** [https://null-threat.vercel.app/](https://null-threat.vercel.app/)
+
+### GitHub (link hub)
+
+1. README links to the live site (above).
+2. Add **Topics** in repo Settings → Topics:
+   `malware-scanner`, `yara`, `offline-security`, `open-source`, `security-tools`, `privacy`, `gplv3`
+3. Publish **GitHub Releases** with real binaries (empty releases hurt trust).
+
+### Google Search Console
+
+After each deploy:
+
+```bash
+npm run seo:ping
+```
+
+Then URL Inspection → request indexing for `/`, `/download`, `/faq`, `/compare`, `/docs`, `/about`, `/blog/null-threat-vs-clamav`.
+
+Full steps: [`docs/launch/GSC-RECrawl.md`](docs/launch/GSC-RECrawl.md)
+
+### Off-page authority
+
+| Channel | Template |
+|---------|----------|
+| AlternativeTo | [`docs/launch/alternativeto-listing.txt`](docs/launch/alternativeto-listing.txt) |
+| Reddit | [`docs/launch/reddit-post.md`](docs/launch/reddit-post.md) |
+| Hacker News | [`docs/launch/hacker-news.md`](docs/launch/hacker-news.md) |
+
+Post to r/cybersecurity, r/privacy, and Show HN **when a real release binary exists**.
+
+### Custom domain
+
+1. Point `nullthreat.com` (or similar) to Vercel.
+2. Set `VITE_SITE_URL=https://nullthreat.com` in Vercel env (see `.env.example`).
+3. Redeploy → add new GSC property → resubmit sitemap.
+
+### Ranking for "null threat"
+
+Brand query (navigational intent) — you should rank #1 once:
+
+- Google indexes the homepage with the correct title/H1
+- GitHub README + releases link back to the site
+- Consistent brand name across AlternativeTo, SourceForge, social posts
+- Custom domain (optional but helps trust vs `.vercel.app`)
+
+Track in GSC → Performance → Queries after 2–4 weeks.
+

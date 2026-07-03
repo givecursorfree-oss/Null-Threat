@@ -1,0 +1,32 @@
+# AlternativeTo listing — copy/paste
+
+**Name:** Null Threat
+
+**Website:** https://null-threat.vercel.app/
+
+**GitHub:** https://github.com/givecursorfree-oss/Null-Threat
+
+**Short description:**
+Free, open-source offline malware scanner for Windows, macOS, and Linux. Four local engines, zero cloud uploads, GPL v3.
+
+**Full description:**
+Null Threat scans files on your machine using hash lookup, signature scanning, YARA rules, and deep analysis. Every scan runs locally — no cloud uploads, no subscription, no telemetry. Includes folder watch, quarantine, risk scoring, and exportable reports. Open source under GPL v3.
+
+**Tags / categories:**
+- Antivirus
+- Malware Scanner
+- Security
+- Privacy
+- Open Source
+- Offline
+
+**Alternatives to list:**
+- ClamAV
+- Windows Defender
+- Malwarebytes
+
+**License:** GPL v3
+
+**Platforms:** Windows, macOS, Linux
+
+**Price:** Free

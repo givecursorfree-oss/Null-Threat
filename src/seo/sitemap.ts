@@ -1,6 +1,14 @@
 import { SITE_URL } from "./config";
 
-const paths = ["/", "/download", "/compare", "/faq", "/docs"] as const;
+const paths = [
+  "/",
+  "/download",
+  "/compare",
+  "/faq",
+  "/docs",
+  "/about",
+  "/blog/null-threat-vs-clamav",
+] as const;
 
 export function buildSitemapXml(): string {
   const lastmod = new Date().toISOString().slice(0, 10);

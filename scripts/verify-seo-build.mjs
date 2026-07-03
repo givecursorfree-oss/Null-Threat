@@ -38,7 +38,14 @@ if (wordCount < 400) {
   failures.push(`expected at least 400 words in built HTML, found ${wordCount}`);
 }
 
-for (const slug of ["download", "faq", "compare", "docs"]) {
+for (const slug of [
+  "download",
+  "faq",
+  "compare",
+  "docs",
+  "about",
+  "blog/null-threat-vs-clamav",
+]) {
   const pagePath = path.resolve(`dist/${slug}/index.html`);
   if (!fs.existsSync(pagePath)) {
     failures.push(`missing static subpage: /${slug}`);

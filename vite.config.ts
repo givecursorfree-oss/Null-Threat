@@ -22,7 +22,7 @@ function seoStaticPlugin(): Plugin {
       const distDir = path.resolve(process.cwd(), "dist");
 
       for (const page of subpages) {
-        const pageDir = path.join(distDir, page.slug);
+        const pageDir = path.join(distDir, ...page.slug.split("/"));
         fs.mkdirSync(pageDir, { recursive: true });
         fs.writeFileSync(
           path.join(pageDir, "index.html"),
