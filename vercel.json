@@ -1,6 +1,12 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/favicon.ico",
+      "destination": "/images/logo-mark.png"
+    }
+  ],
   "headers": [
     {
       "source": "/",

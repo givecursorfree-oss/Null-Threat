@@ -6,7 +6,7 @@ const html = fs.readFileSync(distIndex, "utf8");
 
 const failures = [];
 
-if (html.includes("%STATIC_SEO_HTML%") || html.includes("%STRUCTURED_DATA_JSON%")) {
+if (html.includes("%STATIC_SEO_HTML%") || html.includes("%STRUCTURED_DATA_JSON%") || html.includes("%SITE_BRAND_HEAD%")) {
   failures.push("unreplaced SEO placeholders");
 }
 if (html.includes('name="keywords"')) {
@@ -14,6 +14,9 @@ if (html.includes('name="keywords"')) {
 }
 if (!html.includes("<title>Null Threat | Free Offline Malware Scanner</title>")) {
   failures.push("expected title tag missing");
+}
+if (!html.includes('property="og:site_name" content="Null Threat"')) {
+  failures.push("og:site_name Null Threat missing");
 }
 if (!html.includes('application/ld+json')) {
   failures.push("JSON-LD block missing");

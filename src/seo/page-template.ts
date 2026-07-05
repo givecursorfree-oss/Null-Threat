@@ -1,4 +1,5 @@
 import { SITE_NAME } from "./config";
+import { buildSiteBrandHeadHtml } from "./site-head";
 import type { Subpage } from "./subpages";
 
 export function buildSubpageDocument(page: Subpage, structuredDataJson?: string): string {
@@ -6,20 +7,18 @@ export function buildSubpageDocument(page: Subpage, structuredDataJson?: string)
     ? `<script type="application/ld+json">\n${structuredDataJson}\n</script>`
     : "";
 
+  const brandHead = buildSiteBrandHeadHtml({
+    title: page.title,
+    description: page.description,
+    canonical: page.canonical,
+  });
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${page.title}</title>
-  <meta name="description" content="${page.description}" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="${page.canonical}" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="${SITE_NAME}" />
-  <meta property="og:url" content="${page.canonical}" />
-  <meta property="og:title" content="${page.title}" />
-  <meta property="og:description" content="${page.description}" />
+  ${brandHead}
   <link rel="stylesheet" href="/seo-static.css" />
   ${jsonLd}
 </head>

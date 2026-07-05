@@ -1,14 +1,21 @@
 {
-  "name": "Null Threat — Local Desktop Security Scanner",
+  "id": "https://null-threat.vercel.app/",
+  "name": "Null Threat",
   "short_name": "Null Threat",
-  "description": "Free local malware scanner with four offline engines. No cloud uploads, no telemetry.",
+  "description": "Free offline malware scanner with four local engines. No cloud uploads, no telemetry.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#ef4444",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
   "lang": "en-US",
   "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
     {
       "src": "/images/logo-mark.png",
       "sizes": "192x192",

@@ -1,8 +1,19 @@
 import { GPL_LICENSE_URL, GITHUB_REPO, SITE_NAME, SITE_URL } from "./config";
+import { BRAND_ICON_MARK_URL, BRAND_OG_IMAGE_URL } from "./site-head";
 import { faqItems } from "./faq";
 
-const LOGO_URL = `${SITE_URL}/images/logo-mark.png`;
-const OG_IMAGE_URL = `${SITE_URL}/images/logobg.png`;
+const LOGO_URL = BRAND_ICON_MARK_URL;
+const OG_IMAGE_URL = BRAND_OG_IMAGE_URL;
+
+const organizationLogo = {
+  "@type": "ImageObject" as const,
+  "@id": `${SITE_URL}/#logo`,
+  url: LOGO_URL,
+  contentUrl: LOGO_URL,
+  width: 512,
+  height: 512,
+  caption: `${SITE_NAME} logo`,
+};
 
 export function buildStructuredDataGraph() {
   return {
@@ -13,11 +24,13 @@ export function buildStructuredDataGraph() {
         "@id": `${SITE_URL}/#website`,
         url: SITE_URL,
         name: SITE_NAME,
-        alternateName: ["Null Threat", "null threat"],
+        alternateName: ["Null Threat", "NullThreat", "null threat"],
         description:
           "Free offline malware scanner with four local detection engines for Windows, macOS, and Linux.",
         inLanguage: "en-US",
         publisher: { "@id": `${SITE_URL}/#organization` },
+        about: { "@id": `${SITE_URL}/#organization` },
+        image: { "@id": `${SITE_URL}/#logo` },
       },
       {
         "@type": "WebPage",
@@ -67,11 +80,13 @@ export function buildStructuredDataGraph() {
         "@type": "Organization",
         "@id": `${SITE_URL}/#organization`,
         name: SITE_NAME,
-        alternateName: ["Null Threat", "null threat"],
+        alternateName: ["Null Threat", "NullThreat", "null threat"],
         url: SITE_URL,
-        logo: LOGO_URL,
+        logo: { "@id": `${SITE_URL}/#logo` },
+        image: { "@id": `${SITE_URL}/#logo` },
         sameAs: [GITHUB_REPO],
       },
+      organizationLogo,
       {
         "@type": "HowTo",
         "@id": `${SITE_URL}/#howto-scan`,

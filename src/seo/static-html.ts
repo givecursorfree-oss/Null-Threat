@@ -11,7 +11,10 @@ import { videoSafeScanningPoints } from "./deep-analysis";
 import { faqItems } from "./faq";
 
 function siteNav(): string {
-  return `<nav aria-label="Site">
+  return `<header aria-label="Null Threat">
+  <p><strong>Null Threat</strong> — free offline malware scanner</p>
+</header>
+<nav aria-label="Site">
   <a href="${SITE_URL}/">Home</a> |
   <a href="${SITE_URL}/download">Download</a> |
   <a href="${SITE_URL}/compare">Compare</a> |

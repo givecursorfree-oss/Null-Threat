@@ -7,6 +7,7 @@ import { buildSitemapXml } from "./src/seo/sitemap";
 import { buildSubpageDocument } from "./src/seo/page-template";
 import { buildHomepageStaticHtml } from "./src/seo/static-html";
 import { buildStructuredDataJson, buildSubpageStructuredDataJson } from "./src/seo/structured-data";
+import { buildSiteBrandHeadHtml } from "./src/seo/site-head";
 import { subpages } from "./src/seo/subpages";
 
 function seoStaticPlugin(): Plugin {
@@ -15,6 +16,7 @@ function seoStaticPlugin(): Plugin {
     transformIndexHtml(html) {
       const staticHtml = buildHomepageStaticHtml();
       return html
+        .replace("%SITE_BRAND_HEAD%", buildSiteBrandHeadHtml())
         .replace("%STRUCTURED_DATA_JSON%", buildStructuredDataJson())
         .replaceAll("%STATIC_SEO_HTML%", staticHtml);
     },
@@ -35,7 +37,7 @@ function seoStaticPlugin(): Plugin {
 
       const indexPath = path.join(distDir, "index.html");
       const built = fs.readFileSync(indexPath, "utf8");
-      if (built.includes("%STATIC_SEO_HTML%") || built.includes("%STRUCTURED_DATA_JSON%")) {
+      if (built.includes("%STATIC_SEO_HTML%") || built.includes("%STRUCTURED_DATA_JSON%") || built.includes("%SITE_BRAND_HEAD%")) {
         throw new Error("SEO build failed: unreplaced placeholders in dist/index.html");
       }
       const h2Count = (built.match(/<h2[\s>]/g) ?? []).length;
