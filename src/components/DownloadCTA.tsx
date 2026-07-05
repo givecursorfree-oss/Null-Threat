@@ -30,7 +30,7 @@ export default function DownloadCTA() {
               aria-hidden
             />
 
-            <div className="relative z-10 p-8 md:p-12">
+            <div className="relative z-10 p-6 sm:p-8 md:p-12">
               <h2 className="max-w-3xl text-heading-sm font-semibold tracking-tight text-snow md:text-heading">
                 Download Null Threat
               </h2>

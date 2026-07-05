@@ -63,6 +63,11 @@ export function useLocaleInfo() {
   return { activeLocale: "en", setLocale: () => {} };
 }
 
+/** Framer export preview — false in Vite so scroll/motion components stay interactive. */
+export function useIsStaticRenderer() {
+  return false;
+}
+
 export function useVariantState(opts: {
   defaultVariant: string;
   variant?: string;

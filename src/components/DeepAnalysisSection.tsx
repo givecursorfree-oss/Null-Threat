@@ -111,7 +111,7 @@ export default function DeepAnalysisSection() {
             </div>
 
             <div className="rounded-card-compact border border-white/10 bg-obsidian/80 p-5 ring-1 ring-white/5 backdrop-blur-sm md:p-6">
-              <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-4">
+              <div className="flex flex-col gap-3 border-b border-white/10 pb-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-caption text-ash">Sample scan result</p>
                   <p className="text-body-lg font-semibold text-snow">team_reel_final.mp4</p>

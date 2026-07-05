@@ -1,31 +1,24 @@
 import { faqItems } from "@/seo/faq";
-import { SectionReveal } from "./SectionReveal";
+import { Faq1 } from "@/components/ui/faq-1";
 
 export default function SeoFaq() {
   return (
-    <section
-      id="faq"
-      className="section-gap border-t border-white/10 bg-ink"
-      aria-labelledby="faq-heading"
-    >
-      <div className="container-page max-w-3xl">
-        <SectionReveal>
-          <h2 id="faq-heading" className="mb-8 text-heading font-semibold tracking-tight text-snow">
-            Frequently asked questions
-          </h2>
-          <dl className="space-y-6">
-            {faqItems.map(({ question, answer }) => (
-              <div
-                key={question}
-                className="rounded-2xl border border-white/10 bg-obsidian/60 p-6"
-              >
-                <dt className="text-body-lg font-semibold text-snow">{question}</dt>
-                <dd className="mt-2 text-body leading-relaxed text-ash">{answer}</dd>
-              </div>
-            ))}
-          </dl>
-        </SectionReveal>
-      </div>
+    <section id="faq" className="border-t border-white/10 bg-background" aria-labelledby="faq-heading">
+      <Faq1
+        badge="Frequently asked questions"
+        title={
+          <>
+            Got questions about Null Threat?
+            <br className="hidden sm:block" />
+            We&apos;ve got answers.
+          </>
+        }
+        faqs={faqItems.map((faq, index) => ({
+          id: `faq-${index + 1}`,
+          question: faq.question,
+          answer: faq.answer,
+        }))}
+      />
     </section>
   );
 }

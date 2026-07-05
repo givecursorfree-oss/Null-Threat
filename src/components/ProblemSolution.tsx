@@ -44,7 +44,7 @@ export default function ProblemSolution() {
           </article>
         </SectionReveal>
         <SectionReveal delay={100}>
-          <article className="relative h-full overflow-hidden rounded-card-compact border border-ember/45 bg-ink p-8 text-snow shadow-[0_0_0_1px_rgba(255,90,0,0.16),0_14px_40px_-20px_rgba(255,90,0,0.45)]">
+          <article className="relative h-full overflow-hidden rounded-card-compact border border-ember/45 bg-ink p-5 text-snow shadow-[0_0_0_1px_rgba(255,90,0,0.16),0_14px_40px_-20px_rgba(255,90,0,0.45)] sm:p-8">
             <div
               className="pointer-events-none absolute inset-0"
               aria-hidden

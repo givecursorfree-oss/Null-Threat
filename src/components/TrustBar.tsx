@@ -15,10 +15,10 @@ const items = [
 
 export default function TrustBar() {
   return (
-    <section className="py-12 border-y border-white/10 bg-ink" aria-label="Trust indicators">
+    <section className="py-10 sm:py-12 border-y border-white/10 bg-ink" aria-label="Trust indicators">
       <div className="container-page">
         <SectionReveal>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             {items.map(({ icon: Icon, label }) => (
               <div
                 key={label}

@@ -1,168 +1,135 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useCallback, useState } from "react";
-import { SectionReveal } from "./SectionReveal";
+import {
+  ChatBubbleLeftRightIcon,
+  CircleStackIcon,
+  RocketLaunchIcon,
+} from "@heroicons/react/24/outline";
+import type { ReactNode } from "react";
+import BadHandwriting from "@/framer/Bad-handwriting.js";
 
-type Slide = {
-  quote: string;
-  name: string;
-  role: string;
-  image: string;
-  imageAlt: string;
+type MetricCardProps = {
+  value: string;
+  valueClass: string;
+  accentGradient: string;
+  hoverClass: string;
+  title: string;
+  subtitle: string;
+  footerLabel: string;
+  icon: ReactNode;
 };
 
-const slides: Slide[] = [
-  {
-    quote:
-      "Null Threat's Deep Analysis pipeline is the first scanner where I can expand Identity, Structure, Metadata, and Steg checks in one view. Video-safe rules stopped our MP4 assets from false-flagging — that alone saved hours every week.",
-    name: "Morgan Reyes",
-    role: "Security developer · open-source contributor",
-    image:
-      "https://framerusercontent.com/images/kGRXmPgNLheyYnLNviR2Ox60ww.jpg?width=640&height=960",
-    imageAlt: "Portrait of Morgan Reyes, security developer",
-  },
-  {
-    quote:
-      "I audit every engine locally before recommending a tool to clients. Four offline stages, expandable findings, and GPL v3 source — Null Threat is what I wanted ClamAV's workflow to feel like on the desktop.",
-    name: "Priya Nair",
-    role: "Application security engineer",
-    image:
-      "https://framerusercontent.com/images/LvFy9Ekh799A2oZ4V1JYYlAf8Q.jpg?width=1024&height=576",
-    imageAlt: "Portrait of Priya Nair, application security engineer",
-  },
-  {
-    quote:
-      "Folder watch plus quarantine with a transparent risk score changed how our team handles downloads. No cloud upload, no black-box verdict — just evidence I can export for incident review.",
-    name: "Alex Kim",
-    role: "DevSecOps lead",
-    image:
-      "https://framerusercontent.com/images/ugjY0fN5Emtyx5fj5Th3ceu2DuA.jpg?width=736&height=977",
-    imageAlt: "Portrait of Alex Kim, DevSecOps lead",
-  },
-];
+function MetricCard({
+  value,
+  valueClass,
+  accentGradient,
+  hoverClass,
+  title,
+  subtitle,
+  footerLabel,
+  icon,
+}: MetricCardProps) {
+  return (
+    <div className="group relative flex min-h-[12rem] flex-col justify-between overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 shadow-[inset_0_1px_10px_rgba(0,0,0,1),0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-sm sm:h-56 sm:p-8">
+      <div
+        className={`absolute left-1/4 top-0 h-px w-1/2 bg-gradient-to-r ${accentGradient}`}
+        aria-hidden
+      />
+      <div className="relative z-10 flex h-full flex-col justify-between">
+        <div>
+          <div
+            className={`mb-3 text-5xl font-light leading-none tracking-tighter sm:mb-4 sm:text-6xl lg:text-7xl ${valueClass}`}
+          >
+            {value}
+          </div>
+          <h3 className="text-lg font-light leading-tight text-white">{title}</h3>
+          <p className="mt-1 text-sm font-light text-zinc-400">{subtitle}</p>
+        </div>
+        <div
+          className={`mt-5 flex items-center gap-1.5 text-sm font-light text-zinc-500 transition-colors ${hoverClass}`}
+        >
+          {icon}
+          {footerLabel}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function DeveloperTestimonial() {
-  const reducedMotion = useReducedMotion();
-  const [index, setIndex] = useState(0);
-  const slide = slides[index];
-
-  const go = useCallback(
-    (direction: -1 | 1) => {
-      setIndex((current) => (current + direction + slides.length) % slides.length);
-    },
-    []
-  );
-
   return (
     <section
       id="testimonials"
-      className="section-gap bg-ink"
-      aria-labelledby="testimonials-heading"
+      className="bg-[#030303] font-[Inter,sans-serif] text-zinc-400 antialiased"
+      aria-labelledby="developer-testimonial-quote"
     >
-      <div className="container-page">
-        <SectionReveal>
-          <div className="mb-10 max-w-2xl">
-            <p className="text-caption font-medium uppercase tracking-[0.2em] text-ember mb-3">
-              From developers
-            </p>
+      <div className="container-page py-16 sm:py-20 md:py-24">
+        <div className="mb-12 flex flex-col items-start justify-between gap-10 sm:mb-16 sm:gap-12 lg:flex-row lg:gap-16">
+          <blockquote className="m-0 min-w-0 max-w-3xl">
             <h2
-              id="testimonials-heading"
-              className="text-heading font-semibold tracking-tight text-snow"
+              id="developer-testimonial-quote"
+              className="text-2xl font-light leading-[1.35] tracking-tight text-white drop-shadow-[0_2px_10px_rgba(255,255,255,0.1)] sm:text-3xl md:text-4xl"
             >
-              Built for people who read the findings
+              &ldquo;I built Null Threat because I wanted a scanner I could read end to end — four
+              local engines, expandable Deep Analysis with Identity, Structure, Metadata, and Steg
+              checks, and nothing leaving the machine. Video-safe rules fixed false positives on our
+              MP4 test files. If you care about offline verification, this is the workflow I wished
+              existed before I wrote it.&rdquo;
             </h2>
-          </div>
+          </blockquote>
 
-          <div className="relative mx-auto max-w-6xl">
-            <div className="overflow-hidden rounded-card-compact border border-white/10 bg-obsidian/90 ring-1 ring-white/5 shadow-2xl backdrop-blur-md">
-              <div className="grid min-h-[420px] md:grid-cols-[minmax(0,42%)_1fr] lg:min-h-[480px]">
-                <div className="relative min-h-[220px] md:min-h-full">
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.img
-                      key={slide.image}
-                      src={slide.image}
-                      alt={slide.imageAlt}
-                      width={640}
-                      height={960}
-                      className="absolute inset-0 h-full w-full object-cover"
-                      initial={reducedMotion ? false : { opacity: 0, scale: 1.04 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={reducedMotion ? undefined : { opacity: 0, scale: 0.98 }}
-                      transition={{ duration: reducedMotion ? 0 : 0.45, ease: [0, 0, 0.2, 1] }}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </AnimatePresence>
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/20 to-transparent md:bg-gradient-to-r md:from-transparent md:via-obsidian/10 md:to-obsidian"
-                    aria-hidden
-                  />
-                </div>
-
-                <div className="relative flex flex-col justify-center p-8 md:p-10 lg:p-12">
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.blockquote
-                      key={slide.quote}
-                      className="m-0"
-                      initial={reducedMotion ? false : { opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={reducedMotion ? undefined : { opacity: 0, y: -12 }}
-                      transition={{ duration: reducedMotion ? 0 : 0.4, ease: [0, 0, 0.2, 1] }}
-                    >
-                      <p className="text-body-lg md:text-xl leading-relaxed text-snow/95">
-                        &ldquo;{slide.quote}&rdquo;
-                      </p>
-                      <footer className="mt-8 border-t border-white/10 pt-6">
-                        <cite className="not-italic">
-                          <span className="block text-body-lg font-semibold text-snow">
-                            {slide.name}
-                          </span>
-                          <span className="mt-1 block text-body text-ash">{slide.role}</span>
-                        </cite>
-                      </footer>
-                    </motion.blockquote>
-                  </AnimatePresence>
-
-                  <div
-                    className="mt-8 flex items-center gap-3 md:absolute md:bottom-8 md:right-8 md:mt-0"
-                    role="group"
-                    aria-label="Testimonial navigation"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => go(-1)}
-                      aria-label="Previous testimonial"
-                      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-snow transition-colors hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-snow/70"
-                    >
-                      <ChevronLeftIcon className="h-5 w-5" aria-hidden />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => go(1)}
-                      aria-label="Next testimonial"
-                      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-snow transition-colors hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-snow/70"
-                    >
-                      <ChevronRightIcon className="h-5 w-5" aria-hidden />
-                    </button>
-                    <span className="sr-only">
-                      Testimonial {index + 1} of {slides.length}
-                    </span>
-                    <div className="ml-2 flex gap-1.5" aria-hidden>
-                      {slides.map((_, i) => (
-                        <span
-                          key={i}
-                          className={`h-1.5 rounded-full transition-all duration-fast ${
-                            i === index ? "w-6 bg-ember" : "w-1.5 bg-white/25"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div className="flex w-full shrink-0 flex-col items-start text-left lg:w-auto lg:items-end lg:text-right">
+            <div className="w-full min-w-0 max-w-sm lg:ml-auto [&_div]:!text-left lg:[&_div]:!text-right">
+              <BadHandwriting
+                text="Developer of Null Threat"
+                fontSize={28}
+                color="#FAFAFA"
+                letterSpacing={0.5}
+                lineHeight={1.15}
+                fontWeight={500}
+                seed={42}
+                alignment="left"
+              />
             </div>
+            <div className="text-xs uppercase tracking-widest text-zinc-500">
+              Core contributor
+            </div>
+            <p className="mt-4 text-xs uppercase tracking-[0.18em] text-zinc-600">
+              By a Null Threat developer
+            </p>
           </div>
-        </SectionReveal>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <MetricCard
+            value="500K+"
+            valueClass="text-emerald-400 drop-shadow-[0_0_12px_rgba(52,211,153,0.6)]"
+            accentGradient="from-transparent via-emerald-500/50 to-transparent"
+            hoverClass="group-hover:text-emerald-400"
+            title="Local signatures indexed"
+            subtitle="MalwareBazaar + NSRL hash coverage"
+            footerLabel="Hash lookup"
+            icon={<ChatBubbleLeftRightIcon className="h-[18px] w-[18px] stroke-[1.5]" aria-hidden />}
+          />
+          <MetricCard
+            value="4×"
+            valueClass="text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,0.6)]"
+            accentGradient="from-transparent via-amber-500/50 to-transparent"
+            hoverClass="group-hover:text-amber-400"
+            title="Engines in one offline scan"
+            subtitle="Hash, signatures, YARA, deep analysis"
+            footerLabel="Detection pipeline"
+            icon={<RocketLaunchIcon className="h-[18px] w-[18px] stroke-[1.5]" aria-hidden />}
+          />
+          <MetricCard
+            value="100%"
+            valueClass="text-cyan-400 drop-shadow-[0_0_12px_rgba(34,211,238,0.6)]"
+            accentGradient="from-transparent via-cyan-500/50 to-transparent"
+            hoverClass="group-hover:text-cyan-400"
+            title="On-device verification"
+            subtitle="Zero cloud uploads, zero telemetry"
+            footerLabel="Offline scanning"
+            icon={<CircleStackIcon className="h-[18px] w-[18px] stroke-[1.5]" aria-hidden />}
+          />
+        </div>
       </div>
     </section>
   );

@@ -61,7 +61,7 @@ export default function Nav() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-obsidian/85 backdrop-blur-md"
+      className="site-header fixed top-0 left-0 right-0 z-[100] border-b border-white/10"
       role="banner"
     >
       <div className="container-page h-16 flex items-center justify-between">
@@ -69,13 +69,13 @@ export default function Nav() {
           <BrandLockup size="nav" hideWordmarkOnMobile />
         </a>
 
-        <nav className="hidden md:flex items-center gap-8" aria-label="Main">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Main">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               aria-current={activeHash === link.href ? "page" : undefined}
-              className={`text-body font-medium transition-colors duration-fast ${
+              className={`site-nav-link text-body font-medium transition-colors duration-fast ${
                 activeHash === link.href ? "text-snow" : "text-ash hover:text-snow"
               }`}
             >
@@ -85,12 +85,12 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <a href="#download" className="btn-pill-primary !py-2.5 !px-5 !text-body hidden sm:inline-flex">
+          <a href="#download" className="site-header-download btn-pill-primary !py-2.5 !px-5 !text-body hidden sm:inline-flex">
             Download
           </a>
           <button
             type="button"
-            className="inline-flex sm:hidden min-h-[44px] min-w-[44px] items-center justify-center rounded-md border border-white/15 text-snow hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-snow/70 focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
+            className="inline-flex lg:hidden min-h-[44px] min-w-[44px] items-center justify-center rounded-md border border-white/15 text-snow hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-snow/70 focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav-menu"
             aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -104,7 +104,7 @@ export default function Nav() {
       {mobileOpen && (
         <nav
           id="mobile-nav-menu"
-          className="sm:hidden border-t border-white/10 bg-obsidian/95"
+          className="lg:hidden border-t border-white/10 bg-obsidian/80 backdrop-blur-md"
           aria-label="Mobile"
         >
           <div className="container-page py-3">

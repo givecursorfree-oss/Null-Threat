@@ -41,7 +41,8 @@ export default function EngineStepper() {
             ))}
           </ol>
         </SectionReveal>
-        <ProgressMetricCard
+        <div className="min-w-0">
+          <ProgressMetricCard
           title="invoice_Q4.exe"
           data={riskSeries}
           total="67"
@@ -61,6 +62,7 @@ export default function EngineStepper() {
           footnote="YARA rule matched. Review recommended."
           showStats
         />
+        </div>
       </div>
     </section>
   );

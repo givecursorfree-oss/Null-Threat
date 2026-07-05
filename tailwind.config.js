@@ -7,6 +7,16 @@ export default {
         sans: ["var(--font-cosmica)"],
       },
       colors: {
+        background: "var(--color-obsidian)",
+        foreground: "var(--color-snow)",
+        primary: {
+          DEFAULT: "#FF4202",
+          foreground: "#FFFFFF",
+        },
+        muted: {
+          DEFAULT: "var(--color-graphite)",
+          foreground: "var(--color-ash)",
+        },
         obsidian: "var(--color-obsidian)",
         ink: "var(--color-ink)",
         graphite: "var(--color-graphite)",
@@ -33,6 +43,20 @@ export default {
       boxShadow: {
         pill: "var(--shadow-subtle)",
         card: "var(--shadow-md)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontSize: {
         caption: ["var(--text-caption)", { lineHeight: "var(--leading-caption)" }],

@@ -52,7 +52,7 @@ export default function FeaturesGrid() {
         aria-hidden
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8">
+      <div className="container-page relative z-10">
         <div
           ref={headerRef}
           className="max-w-3xl"
@@ -102,7 +102,7 @@ export default function FeaturesGrid() {
 
           <FadeCell
             delay={160}
-            className="relative min-h-[420px] overflow-hidden rounded-card-compact ring-1 ring-white/15 md:min-h-[460px]"
+            className="relative min-h-[320px] overflow-hidden rounded-card-compact ring-1 ring-white/15 sm:min-h-[420px] md:min-h-[460px]"
           >
             <div className="absolute inset-0" aria-hidden>
               <img
@@ -123,7 +123,7 @@ export default function FeaturesGrid() {
                 }}
               />
             </div>
-            <div className="relative flex h-full min-h-[420px] flex-col justify-end md:min-h-[460px]">
+            <div className="relative flex h-full min-h-[320px] flex-col justify-end sm:min-h-[420px] md:min-h-[460px]">
               <div className="p-5 md:p-6">
                 <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-snow">
                   Runs entirely on-device

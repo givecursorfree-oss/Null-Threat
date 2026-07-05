@@ -1,33 +1,48 @@
+import { useEffect, useState } from "react";
 import CounterFX from "@/framer/Counter-FX.js";
 import { SectionReveal } from "./SectionReveal";
 
-const COUNTER_FONT = {
-  fontFamily: '"DM Sans", system-ui, sans-serif',
-  fontWeight: 700,
-  fontSize: "clamp(2.5rem, 8vw, 4.5rem)",
-  lineHeight: "1em",
-} as const;
+function useCounterFontSize() {
+  const [fontSize, setFontSize] = useState(64);
+
+  useEffect(() => {
+    const update = () => {
+      const width = window.innerWidth;
+      if (width < 380) setFontSize(40);
+      else if (width < 640) setFontSize(52);
+      else if (width < 1024) setFontSize(64);
+      else setFontSize(80);
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return fontSize;
+}
 
 export default function ThreatLandscapeCounter() {
+  const counterFontSize = useCounterFontSize();
+
+  const counterFont = {
+    fontFamily: "Inter, system-ui, sans-serif",
+    fontWeight: 700,
+    fontSize: counterFontSize,
+    lineHeight: "1em",
+    letterSpacing: "-0.04em",
+  } as const;
+
   return (
     <section
       id="threat-landscape"
-      className="relative overflow-hidden border-y border-white/10 bg-obsidian py-16 md:py-20"
+      className="relative overflow-hidden border-y border-white/10 bg-black py-16 sm:py-20 md:py-24"
       aria-labelledby="threat-landscape-heading"
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-30"
-        aria-hidden
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(239, 68, 68, 0.15) 0%, transparent 70%)",
-        }}
-      />
-
       <div className="container-page relative z-10">
         <SectionReveal>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-caption font-medium uppercase tracking-[0.2em] text-ember mb-4">
+            <p className="mb-4 text-caption font-medium uppercase tracking-[0.2em] text-zinc-500">
               Global threat volume
             </p>
             <h2
@@ -41,22 +56,24 @@ export default function ThreatLandscapeCounter() {
               sending them to the cloud.
             </p>
 
-            <div className="mt-10 flex flex-col items-center justify-center gap-2">
-              <CounterFX
-                from={0}
-                to={450000}
-                duration={2.8}
-                easing="smooth"
-                decimals={0}
-                prefix=""
-                suffix="+"
-                showThousandSep={true}
-                triggerMode="layerInView"
-                tint="#f87171"
-                htmlTag="p"
-                font={COUNTER_FONT}
-              />
-              <p className="text-caption text-ash/90 max-w-md">
+            <div className="counter-fx-display mx-auto mt-8 flex w-full min-w-0 flex-col items-center justify-center gap-4 sm:mt-12">
+              <div className="max-w-full overflow-hidden px-1">
+                <CounterFX
+                  from={0}
+                  to={450000}
+                  duration={2}
+                  easing="smooth"
+                  decimals={0}
+                  prefix=""
+                  suffix="+"
+                  showThousandSep={true}
+                  triggerMode="layerInView"
+                  tint="#F87171"
+                  htmlTag="div"
+                  font={counterFont}
+                />
+              </div>
+              <p className="max-w-md px-2 text-caption text-zinc-500">
                 Industry estimate for new malicious samples detected globally per day. Null Threat scans
                 locally so you can verify files before they become part of that statistic.
               </p>

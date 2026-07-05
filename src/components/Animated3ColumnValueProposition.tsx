@@ -58,7 +58,7 @@ export default function Animated3ColumnValueProposition() {
       <div className="container-page">
         <div
           ref={shellRef}
-          className="rounded-card border border-white/10 bg-ink/90 p-8 backdrop-blur-sm md:p-10"
+          className="rounded-card border border-white/10 bg-ink/90 p-5 backdrop-blur-sm sm:p-8 md:p-10"
           style={{
             opacity: shellVisible ? 1 : 0,
             transform: shellVisible ? "translateY(0)" : "translateY(24px)",
@@ -66,7 +66,7 @@ export default function Animated3ColumnValueProposition() {
           }}
         >
           <div className="mb-10 max-w-3xl md:mb-12">
-            <h2 className="text-heading font-semibold tracking-tight text-snow md:text-[2.5rem]">
+            <h2 className="text-heading font-semibold tracking-tight text-snow sm:text-heading-lg">
               Four engines. Full local verification.
             </h2>
             <p className="mt-4 max-w-[62ch] text-body-lg leading-relaxed text-ash">
@@ -78,7 +78,7 @@ export default function Animated3ColumnValueProposition() {
           <div className="grid grid-flow-dense grid-cols-1 gap-6 lg:grid-cols-3">
             <FadeCell
               delay={80}
-              className="group relative min-h-[400px] overflow-hidden rounded-card-compact ring-1 ring-white/10 transition-transform duration-700 ease-out hover:-translate-y-1 sm:min-h-[460px]"
+              className="group relative min-h-[320px] overflow-hidden rounded-card-compact ring-1 ring-white/10 transition-transform duration-700 ease-out hover:-translate-y-1 sm:min-h-[400px] lg:min-h-[460px]"
             >
               <img
                 src={EDGE_CARD_IMAGE}
@@ -104,7 +104,7 @@ export default function Animated3ColumnValueProposition() {
                 }}
                 aria-hidden
               />
-              <div className="relative flex h-full min-h-[400px] flex-col justify-end p-6 sm:min-h-[460px] sm:p-8">
+              <div className="relative flex h-full min-h-[320px] flex-col justify-end p-5 sm:min-h-[400px] sm:p-8 lg:min-h-[460px]">
                 <h3 className="text-heading-sm font-semibold tracking-tight text-snow sm:text-heading">
                   Every file. Every folder.
                 </h3>
@@ -126,7 +126,7 @@ export default function Animated3ColumnValueProposition() {
 
             <FadeCell
               delay={160}
-              className="card-muted relative flex min-h-[400px] flex-col p-6 transition-transform duration-700 ease-out hover:-translate-y-1 sm:min-h-[460px] sm:p-8"
+              className="card-muted relative flex min-h-[320px] flex-col p-5 transition-transform duration-700 ease-out hover:-translate-y-1 sm:min-h-[400px] sm:p-8 lg:min-h-[460px]"
             >
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ember/45 to-transparent"

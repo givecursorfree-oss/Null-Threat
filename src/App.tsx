@@ -8,7 +8,6 @@ import EngineStepper from "./components/EngineStepper";
 import DeepAnalysisSection from "./components/DeepAnalysisSection";
 import OpenSource from "./components/OpenSource";
 import DownloadCTA from "./components/DownloadCTA";
-import SeoGuideSection from "./components/SeoGuideSection";
 import SeoFaq from "./components/SeoFaq";
 import Footer from "./components/Footer";
 import { useCoarsePointer, usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
@@ -71,7 +70,7 @@ export default function App() {
         />
       </LazySection>
 
-      <div className="relative z-20 min-h-screen font-sans antialiased">
+      <div className="relative z-20 min-h-screen w-full max-w-[100vw] overflow-x-hidden font-sans antialiased">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[120] focus:rounded-md focus:bg-snow focus:px-4 focus:py-2 focus:text-obsidian focus:outline-none"
@@ -102,7 +101,6 @@ export default function App() {
             <DeveloperTestimonial />
           </LazySection>
           <DownloadCTA />
-          <SeoGuideSection />
           <SeoFaq />
           <Footer />
         </main>

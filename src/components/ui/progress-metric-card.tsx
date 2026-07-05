@@ -60,25 +60,25 @@ const SIZES: Record<
   { minH: string; pad: string; footer: string; title: string; headline: string }
 > = {
   sm: {
-    minH: "min-h-[280px]",
-    pad: "px-5 pt-5",
-    footer: "px-5 py-3",
-    title: "text-[14px]",
-    headline: "text-[52px]",
+    minH: "min-h-[260px] sm:min-h-[280px]",
+    pad: "px-4 pt-4 sm:px-5 sm:pt-5",
+    footer: "px-4 py-3 sm:px-5",
+    title: "text-[13px] sm:text-[14px]",
+    headline: "text-[clamp(2rem,12vw,3.25rem)]",
   },
   md: {
-    minH: "min-h-[380px]",
-    pad: "px-8 pt-7",
-    footer: "px-8 py-4",
-    title: "text-[17px]",
-    headline: "text-[72px]",
+    minH: "min-h-[320px] sm:min-h-[380px]",
+    pad: "px-5 pt-5 sm:px-8 sm:pt-7",
+    footer: "px-5 py-3 sm:px-8 sm:py-4",
+    title: "text-[15px] sm:text-[17px]",
+    headline: "text-[clamp(2.25rem,14vw,4.5rem)]",
   },
   lg: {
-    minH: "min-h-[460px]",
-    pad: "px-10 pt-9",
-    footer: "px-10 py-5",
-    title: "text-[19px]",
-    headline: "text-[88px]",
+    minH: "min-h-[380px] sm:min-h-[460px]",
+    pad: "px-6 pt-6 sm:px-10 sm:pt-9",
+    footer: "px-6 py-4 sm:px-10 sm:py-5",
+    title: "text-[17px] sm:text-[19px]",
+    headline: "text-[clamp(2.75rem,16vw,5.5rem)]",
   },
 };
 
@@ -259,11 +259,11 @@ export default function ProgressMetricCard({
   return (
     <div ref={ref} className={shell}>
       <div className={`relative z-10 ${sz.pad} pb-3`}>
-        <div className="flex items-start justify-between gap-3">
-          <h3 className={`${sz.title} min-w-0 truncate font-semibold tracking-tight text-snow`}>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <h3 className={`${sz.title} min-w-0 font-semibold tracking-tight text-snow sm:truncate`}>
             {title}
           </h3>
-          <div className="pointer-events-auto flex shrink-0 items-center gap-2.5 text-[13px]">
+          <div className="pointer-events-auto flex shrink-0 flex-wrap items-center gap-2.5 text-[13px]">
             <span className="flex items-center gap-1 font-medium" style={{ color: color.text }}>
               <TrendIcon className="h-[15px] w-[15px]" aria-hidden />
               {displayPercent}
@@ -295,7 +295,7 @@ export default function ProgressMetricCard({
       </div>
 
       <div
-        className={`relative z-10 grid flex-1 gap-4 px-5 pb-4 sm:grid-cols-[minmax(0,40%)_minmax(0,1fr)] ${size === "sm" ? "" : "md:px-8 md:pb-6"}`}
+        className={`relative z-10 grid flex-1 gap-4 px-4 pb-4 sm:grid-cols-[minmax(0,40%)_minmax(0,1fr)] sm:px-5 ${size === "sm" ? "" : "md:px-8 md:pb-6"}`}
       >
         <div className="flex flex-col justify-center">
           <div
