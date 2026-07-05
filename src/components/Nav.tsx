@@ -5,6 +5,7 @@ import { BrandLockup } from "./BrandLockup";
 const navLinks = [
   { href: "#platform", label: "Platform" },
   { href: "#engines", label: "Engines" },
+  { href: "#deep-analysis", label: "Deep Analysis" },
   { href: "#compare", label: "Compare" },
   { href: "#faq", label: "FAQ" },
 ];
@@ -12,6 +13,7 @@ const navLinks = [
 const scrollSpySections = [
   ...navLinks.map((link) => link.href),
   "#download",
+  "#deep-analysis",
 ];
 
 export default function Nav() {

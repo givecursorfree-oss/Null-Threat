@@ -50,6 +50,16 @@ export const faqItems: FaqItem[] = [
       "Each engine contributes evidence to a 0–100 risk score. Clean files score low; suspicious patterns, YARA hits, and malware signatures push scores into quarantine-ready tiers.",
   },
   {
+    question: "What does Deep Analysis check?",
+    answer:
+      "Deep Analysis runs four sub-checks beyond a basic scan: Identity (magic bytes, extension mismatch, entropy), Structure (MP4/MOV/MKV container walk and subtitle script injection), Metadata (ExifTool and native tag scanning), and Steganography (Chi-square and RS LSB on images). Click Deep Analysis in scan results to expand each sub-check with bullet-point findings.",
+  },
+  {
+    question: "Does Null Threat flag normal video files as malware?",
+    answer:
+      "No. Video-safe scanning skips entropy checks for video, audio, compressed images, and archives. The MP4 structure parser ignores binary NAL bytes inside containers, and video LSB steganalysis is disabled and not scored — so normal MP4 and MKV files avoid critical false positives.",
+  },
+  {
     question: "Who should use a local malware scanner?",
     answer:
       "Developers, security researchers, privacy advocates, and anyone who needs verifiable offline scanning without sending files to third-party clouds.",

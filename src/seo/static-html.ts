@@ -6,7 +6,8 @@ import {
   SEO,
   SITE_URL,
 } from "./config";
-import { cloudAvCons, engines, features, localAvPros, riskTiers } from "./content";
+import { cloudAvCons, deepAnalysisStages, engines, features, localAvPros, riskTiers } from "./content";
+import { videoSafeScanningPoints } from "./deep-analysis";
 import { faqItems } from "./faq";
 
 function siteNav(): string {
@@ -70,6 +71,15 @@ export function buildHomepageStaticHtml(): string {
     <section id="engines">
       <h2>Four detection engines. One verified verdict.</h2>
       <ol>${engineList}</ol>
+    </section>
+
+    <section id="deep-analysis">
+      <h2>Deep Analysis pipeline</h2>
+      <p>Multi-stage deep analysis with four sub-checks: Identity, Structure, Metadata, and Steganography. Expand Deep Analysis in scan results to review bullet-point findings.</p>
+      <h3>Sub-checks</h3>
+      <ul>${deepAnalysisStages.map((s) => `<li><h4>${s.title}</h4><p>${s.body}</p></li>`).join("")}</ul>
+      <h3>Video-safe scanning</h3>
+      <ul>${videoSafeScanningPoints.map((p) => `<li>${p}</li>`).join("")}</ul>
     </section>
 
     <section id="features">

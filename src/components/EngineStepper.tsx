@@ -5,7 +5,10 @@ const engines = [
   { title: "SHA-256 Hash Lookup", body: "500K+ MalwareBazaar and NSRL signatures." },
   { title: "ClamAV", body: "Industry-standard local clamscan engine." },
   { title: "YARA Rules", body: "Polyglot and packed executable detection." },
-  { title: "Deep Analysis", body: "Entropy scoring, magic bytes, and ffprobe." },
+  {
+    title: "Deep Analysis",
+    body: "Identity, Structure, Metadata, and Steg sub-checks — expandable in scan results.",
+  },
 ];
 
 const riskSeries: SeriesPoint[] = [

@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import TrustBar from "./components/TrustBar";
 import ProblemSolution from "./components/ProblemSolution";
 import EngineStepper from "./components/EngineStepper";
+import DeepAnalysisSection from "./components/DeepAnalysisSection";
 import OpenSource from "./components/OpenSource";
 import DownloadCTA from "./components/DownloadCTA";
 import SeoGuideSection from "./components/SeoGuideSection";
@@ -20,6 +21,8 @@ const Animated3ColumnValueProposition = lazy(
 );
 const FeaturesGrid = lazy(() => import("./components/FeaturesGrid"));
 const RiskScore = lazy(() => import("./components/RiskScore"));
+const ThreatLandscapeCounter = lazy(() => import("./components/ThreatLandscapeCounter"));
+const DeveloperTestimonial = lazy(() => import("./components/DeveloperTestimonial"));
 
 function LazySection({ children }: { children: ReactNode }) {
   return <Suspense fallback={null}>{children}</Suspense>;
@@ -80,10 +83,14 @@ export default function App() {
           <Hero reducedMotion={reducedMotion} />
           <TrustBar />
           <LazySection>
+            <ThreatLandscapeCounter />
+          </LazySection>
+          <LazySection>
             <Animated3ColumnValueProposition />
           </LazySection>
           <ProblemSolution />
           <EngineStepper />
+          <DeepAnalysisSection />
           <LazySection>
             <FeaturesGrid />
           </LazySection>
@@ -91,6 +98,9 @@ export default function App() {
             <RiskScore />
           </LazySection>
           <OpenSource />
+          <LazySection>
+            <DeveloperTestimonial />
+          </LazySection>
           <DownloadCTA />
           <SeoGuideSection />
           <SeoFaq />

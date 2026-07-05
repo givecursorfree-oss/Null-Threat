@@ -37,8 +37,8 @@ export function buildNullThreatVsClamavHtml(nav: string): string {
   <p>
     Pick <strong>Null Threat</strong> if you want an auditable desktop scanner for Windows, macOS, or Linux that
     combines four local engines, transparent risk scoring, folder watch, and quarantine — without a subscription
-    or vendor cloud. Null Threat includes signature scanning and adds YARA, hash intelligence, and structural analysis
-    in one offline workflow.
+    or vendor cloud. Deep Analysis adds Identity, Structure, Metadata, and Steganography sub-checks with
+    video-safe rules for MP4 and MKV containers.
   </p>
 
   <h2>Can you use both?</h2>

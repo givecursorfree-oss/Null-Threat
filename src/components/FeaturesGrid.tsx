@@ -174,7 +174,10 @@ export default function FeaturesGrid() {
 
               <div className="mt-4 space-y-2 text-[11px] text-ash">
                 <p>
-                  <span className="text-ash">Engines:</span> ClamAV clean, YARA 2 hits, entropy 7.4
+                  <span className="text-ash">Engines:</span> ClamAV clean, YARA 2 hits
+                </p>
+                <p>
+                  <span className="text-ash">Deep Analysis:</span> Identity, Structure, Metadata expanded
                 </p>
                 <p>
                   <span className="text-ash">Action:</span> moved to AES-256 quarantine vault

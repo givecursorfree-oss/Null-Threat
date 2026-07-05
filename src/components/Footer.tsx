@@ -5,6 +5,7 @@ const groups = {
   Product: [
     { label: "Features", href: "#features" },
     { label: "Compare", href: "/compare" },
+    { label: "Deep Analysis", href: "#deep-analysis" },
     { label: "Engines", href: "#engines" },
     { label: "Download", href: "/download" },
     { label: "Null Threat vs ClamAV", href: "/blog/null-threat-vs-clamav" },

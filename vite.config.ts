@@ -57,7 +57,7 @@ const csp = [
   "script-src 'self' https://cdn.jsdelivr.net https://assets.unicorn.studio",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
-  "img-src 'self' data: blob: https://assets.unicorn.studio https://hoirqrkdgbmvpwutwuwj.supabase.co",
+  "img-src 'self' data: blob: https://assets.unicorn.studio https://hoirqrkdgbmvpwutwuwj.supabase.co https://framerusercontent.com",
   "media-src 'self' data: blob:",
   "connect-src 'self' https://assets.unicorn.studio https://cdn.jsdelivr.net https://hoirqrkdgbmvpwutwuwj.supabase.co",
   "worker-src 'self' blob:",
