@@ -15,6 +15,10 @@ function appendScript(src: string) {
   return script;
 }
 
+export function preloadUnicornStudio() {
+  return loadUnicornScript();
+}
+
 function loadUnicornScript() {
   if (window.UnicornStudio) return Promise.resolve();
   if (scriptLoading) return scriptLoading;

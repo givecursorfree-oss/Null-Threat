@@ -39,6 +39,16 @@ export default {
         hero: "var(--radius-hero)",
         pill: "var(--radius-pill)",
         badge: "var(--radius-badge)",
+        xl: "0.75rem",
+        "3xl": "1.5rem",
+      },
+      spacing: {
+        25: "6.25rem",
+        35: "8.75rem",
+        68: "17rem",
+      },
+      size: {
+        7.5: "1.875rem",
       },
       boxShadow: {
         pill: "var(--shadow-subtle)",

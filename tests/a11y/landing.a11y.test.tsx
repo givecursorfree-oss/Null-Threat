@@ -6,6 +6,12 @@ expect.extend(toHaveNoViolations);
 
 vi.mock("@/components/RedOverlayUnicornStudioBackground", () => ({
   default: () => null,
+  preloadUnicornStudio: () => Promise.resolve(),
+}));
+
+vi.mock("@/components/Preloader", () => ({
+  default: () => null,
+  shouldSkipPreloader: () => true,
 }));
 
 vi.mock("@/components/Hero", () => ({

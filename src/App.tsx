@@ -1,4 +1,5 @@
-import { lazy, Suspense, useEffect, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
+import Preloader, { shouldSkipPreloader } from "./components/Preloader";
 import RedOverlayUnicornStudioBackground from "./components/RedOverlayUnicornStudioBackground";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
@@ -27,6 +28,9 @@ function LazySection({ children }: { children: ReactNode }) {
 export default function App() {
   const reducedMotion = usePrefersReducedMotion();
   const coarsePointer = useCoarsePointer();
+  const skipPreloader = shouldSkipPreloader(reducedMotion);
+  const [preloaderDone, setPreloaderDone] = useState(skipPreloader);
+  const showApp = preloaderDone;
 
   useEffect(() => {
     const onContextMenu = (event: MouseEvent) => {
@@ -59,20 +63,35 @@ export default function App() {
 
   return (
     <>
-      <RedOverlayUnicornStudioBackground
-        reducedMotion={reducedMotion}
-        coarsePointer={coarsePointer}
-      />
+      {!skipPreloader && (
+        <Preloader
+          reducedMotion={reducedMotion}
+          onComplete={() => setPreloaderDone(true)}
+        />
+      )}
 
-      <div className="relative z-20 min-h-screen w-full max-w-[100vw] overflow-x-hidden font-sans antialiased">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[120] focus:rounded-md focus:bg-snow focus:px-4 focus:py-2 focus:text-obsidian focus:outline-none"
-        >
-          Skip to main content
-        </a>
-        <Nav />
-        <main id="main-content" className="overflow-x-hidden w-full max-w-full">
+      <div
+        className="relative min-h-screen w-full max-w-[100vw] overflow-x-hidden font-sans antialiased transition-opacity duration-300"
+        style={{
+          opacity: showApp ? 1 : 0,
+          pointerEvents: showApp ? "auto" : "none",
+        }}
+        aria-hidden={!showApp}
+      >
+        <RedOverlayUnicornStudioBackground
+          reducedMotion={reducedMotion}
+          coarsePointer={coarsePointer}
+        />
+
+        <div className="relative z-20 min-h-screen w-full max-w-[100vw] overflow-x-hidden">
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[120] focus:rounded-md focus:bg-snow focus:px-4 focus:py-2 focus:text-obsidian focus:outline-none"
+          >
+            Skip to main content
+          </a>
+          <Nav />
+          <main id="main-content" className="overflow-x-hidden w-full max-w-full">
           <Hero reducedMotion={reducedMotion} />
           <TrustBar />
           <LazySection>
@@ -96,8 +115,9 @@ export default function App() {
           </LazySection>
           <DownloadCTA />
           <SeoFaq />
-          <Footer />
-        </main>
+            <Footer />
+          </main>
+        </div>
       </div>
     </>
   );
