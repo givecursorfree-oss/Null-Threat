@@ -4,10 +4,6 @@ import App from "@/App";
 
 expect.extend(toHaveNoViolations);
 
-vi.mock("@/components/Preloader", () => ({
-  default: () => null,
-}));
-
 vi.mock("@/components/RedOverlayUnicornStudioBackground", () => ({
   default: () => null,
 }));

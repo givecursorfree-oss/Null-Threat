@@ -10,6 +10,18 @@
     overflow-x: clip;
   }
 
+  #static-seo-content {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
   body {
     background-color: var(--surface-canvas);
     color: var(--color-ash);
@@ -221,7 +233,7 @@
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-/* UnicornStudio — hero + header zone, pauses off-screen */
+/* UnicornStudio — hero + header zone; subtle threat overlay on top */
 .aura-background-component {
   position: fixed;
   top: 0;
@@ -247,13 +259,26 @@
 }
 
 .aura-canvas-host,
-.aura-background-component [data-us-project],
+.aura-background-component [data-us-project] {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1;
+}
+
 .aura-background-component canvas {
   position: absolute !important;
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
   z-index: 1;
+  opacity: 1;
+}
+
+.aura-background-component.aura-webgl-ready .aura-canvas-fallback {
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
 
 .aura-red-overlay {
@@ -262,15 +287,28 @@
   z-index: 2;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 85% 55% at 50% 8%, rgba(255, 90, 0, 0.42) 0%, transparent 62%),
-    radial-gradient(ellipse 70% 45% at 18% 28%, rgba(255, 45, 45, 0.28) 0%, transparent 58%),
+    radial-gradient(ellipse 85% 50% at 50% 10%, rgba(255, 90, 0, 0.14) 0%, transparent 58%),
+    radial-gradient(ellipse 60% 38% at 15% 28%, rgba(220, 38, 38, 0.08) 0%, transparent 52%),
     linear-gradient(
       180deg,
-      rgba(255, 55, 30, 0.32) 0%,
-      rgba(200, 30, 20, 0.18) 45%,
+      rgba(255, 55, 30, 0.09) 0%,
+      rgba(180, 30, 20, 0.04) 42%,
       rgba(9, 9, 11, 0) 100%
     );
-  mix-blend-mode: screen;
+  mix-blend-mode: soft-light;
+}
+
+.aura-red-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 78%);
+  mask-image: linear-gradient(to bottom, black 0%, transparent 78%);
 }
 
 .aura-red-overlay--static {
@@ -297,8 +335,8 @@
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(255, 90, 0, 0.14) 0%, transparent 58%),
-    radial-gradient(ellipse 55% 40% at 82% 18%, rgba(255, 50, 50, 0.1) 0%, transparent 52%),
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(255, 90, 0, 0.22) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 40% at 82% 18%, rgba(255, 50, 50, 0.14) 0%, transparent 52%),
     var(--surface-canvas);
   animation: aura-ambient-drift 18s ease-in-out infinite alternate;
 }

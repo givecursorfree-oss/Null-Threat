@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, type ReactNode } from "react";
-import Preloader from "./components/Preloader";
+import RedOverlayUnicornStudioBackground from "./components/RedOverlayUnicornStudioBackground";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import TrustBar from "./components/TrustBar";
@@ -12,9 +12,6 @@ import SeoFaq from "./components/SeoFaq";
 import Footer from "./components/Footer";
 import { useCoarsePointer, usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
 
-const RedOverlayUnicornStudioBackground = lazy(
-  () => import("./components/RedOverlayUnicornStudioBackground")
-);
 const Animated3ColumnValueProposition = lazy(
   () => import("./components/Animated3ColumnValueProposition")
 );
@@ -62,13 +59,10 @@ export default function App() {
 
   return (
     <>
-      <Preloader reducedMotion={reducedMotion} />
-      <LazySection>
-        <RedOverlayUnicornStudioBackground
-          reducedMotion={reducedMotion}
-          coarsePointer={coarsePointer}
-        />
-      </LazySection>
+      <RedOverlayUnicornStudioBackground
+        reducedMotion={reducedMotion}
+        coarsePointer={coarsePointer}
+      />
 
       <div className="relative z-20 min-h-screen w-full max-w-[100vw] overflow-x-hidden font-sans antialiased">
         <a

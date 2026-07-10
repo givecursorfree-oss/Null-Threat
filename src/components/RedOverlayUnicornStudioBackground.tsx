@@ -1,35 +1,68 @@
 import { useCallback, useEffect, useRef } from "react";
 
-const UNICORN_PROJECT_ID = "tPmIIl0vKqHO9yqmtge2";
-const UNICORN_SCRIPT =
-  "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js";
+const UNICORN_PROJECT_ID = "yWZ2Tbe094Fsjgy9NRnD";
+const UNICORN_SCRIPT_CDN =
+  "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.33/dist/unicornStudio.umd.js";
+const UNICORN_SCRIPT_LOCAL = "/vendor/unicornStudio.umd.js";
 
 let scriptLoading: Promise<void> | null = null;
+
+function appendScript(src: string) {
+  const script = document.createElement("script");
+  script.src = src;
+  script.async = true;
+  document.head.appendChild(script);
+  return script;
+}
 
 function loadUnicornScript() {
   if (window.UnicornStudio) return Promise.resolve();
   if (scriptLoading) return scriptLoading;
 
   scriptLoading = new Promise((resolve, reject) => {
-    const existing = document.querySelector<HTMLScriptElement>(`script[src="${UNICORN_SCRIPT}"]`);
+    const existing = document.querySelector<HTMLScriptElement>(
+      `script[src="${UNICORN_SCRIPT_LOCAL}"], script[src="${UNICORN_SCRIPT_CDN}"]`
+    );
+
+    const waitForApi = (onFail: () => void) => {
+      let attempts = 0;
+      const poll = () => {
+        if (window.UnicornStudio) {
+          resolve();
+          return;
+        }
+        if (attempts++ >= 80) {
+          onFail();
+          return;
+        }
+        setTimeout(poll, 50);
+      };
+      poll();
+    };
+
     if (existing) {
       if (window.UnicornStudio) {
         resolve();
         return;
       }
-      existing.addEventListener("load", () => resolve(), { once: true });
+      existing.addEventListener("load", () => waitForApi(() => reject(new Error("UnicornStudio failed to load"))), {
+        once: true,
+      });
       existing.addEventListener("error", () => reject(new Error("UnicornStudio failed to load")), {
         once: true,
       });
+      waitForApi(() => reject(new Error("UnicornStudio failed to load")));
       return;
     }
 
-    const script = document.createElement("script");
-    script.src = UNICORN_SCRIPT;
-    script.async = true;
-    script.onload = () => resolve();
-    script.onerror = () => reject(new Error("UnicornStudio failed to load"));
-    (document.head || document.body).appendChild(script);
+    const script = appendScript(UNICORN_SCRIPT_CDN);
+    script.onload = () => waitForApi(() => reject(new Error("UnicornStudio failed to load")));
+    script.onerror = () => {
+      script.remove();
+      const fallback = appendScript(UNICORN_SCRIPT_LOCAL);
+      fallback.onload = () => waitForApi(() => reject(new Error("UnicornStudio failed to load")));
+      fallback.onerror = () => reject(new Error("UnicornStudio failed to load"));
+    };
   });
 
   return scriptLoading;
@@ -47,38 +80,66 @@ type Props = {
 };
 
 /**
- * Hero-scoped UnicornStudio + ember-red atmospheric overlay.
- * Loads immediately on mount; pauses when scrolled past the hero zone.
+ * Hero UnicornStudio aura with a subtle ember threat overlay.
+ * Script is preloaded from /public/vendor; CSS fallback paints instantly.
  */
 export default function RedOverlayUnicornStudioBackground({
   reducedMotion = false,
-  coarsePointer = false,
 }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const hostRef = useRef<HTMLDivElement>(null);
-  const skipWebGL = reducedMotion || coarsePointer;
+  const skipWebGL = reducedMotion;
+
+  const markWebGlReady = useCallback(() => {
+    const root = rootRef.current;
+    const host = hostRef.current;
+    if (!root || !host?.querySelector("canvas")) return false;
+    root.classList.add("aura-webgl-ready");
+    return true;
+  }, []);
 
   const tryInit = useCallback(() => {
     if (skipWebGL || !hostRef.current) return;
-    mountUnicornProjects();
-  }, [skipWebGL]);
+    if (!mountUnicornProjects()) return;
+
+    if (markWebGlReady()) return;
+
+    const observer = new MutationObserver(() => {
+      if (markWebGlReady()) observer.disconnect();
+    });
+    observer.observe(hostRef.current, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, [skipWebGL, markWebGlReady]);
 
   useEffect(() => {
     if (skipWebGL) return;
 
     let cancelled = false;
-    let retryTimer: ReturnType<typeof setTimeout> | undefined;
+    let cleanupObserver: (() => void) | undefined;
+
+    const boot = () => {
+      if (cancelled) return;
+      cleanupObserver = tryInit();
+    };
+
+    if (window.UnicornStudio) {
+      boot();
+      requestAnimationFrame(boot);
+      setTimeout(boot, 120);
+      setTimeout(boot, 400);
+      return () => {
+        cancelled = true;
+        cleanupObserver?.();
+      };
+    }
 
     loadUnicornScript()
       .then(() => {
-        if (cancelled) return;
-        tryInit();
-        requestAnimationFrame(() => {
-          if (!cancelled) tryInit();
-        });
-        retryTimer = setTimeout(() => {
-          if (!cancelled) tryInit();
-        }, 250);
+        boot();
+        requestAnimationFrame(boot);
+        setTimeout(boot, 120);
+        setTimeout(boot, 400);
       })
       .catch(() => {
         /* CSS fallback remains visible */
@@ -86,7 +147,7 @@ export default function RedOverlayUnicornStudioBackground({
 
     return () => {
       cancelled = true;
-      if (retryTimer) clearTimeout(retryTimer);
+      cleanupObserver?.();
     };
   }, [skipWebGL, tryInit]);
 
